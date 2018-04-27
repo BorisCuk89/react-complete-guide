@@ -9,3 +9,7 @@
 .bold {
   font-weight: 700;
 }
+
+.test {
+  display: block;
+}
