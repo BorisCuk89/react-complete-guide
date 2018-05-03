@@ -8,15 +8,15 @@ class App extends Component {
   constructor(props) {
     super(props);
     console.log('[App.js] Inside Constructor', props);
-    this.state = {
-      persons: [
-        { id: '00', name: 'Max', age: 28 },
-        { id: '01', name: 'Jane', age: 38 },
-        { id: '02', name: 'Tijana', age: 18 }
-      ],
-      otherState: 'some other value',
-      showPerson: false
-    };
+    // this.state = {
+    //   persons: [
+    //     { id: '00', name: 'Max', age: 28 },
+    //     { id: '01', name: 'Jane', age: 38 },
+    //     { id: '02', name: 'Tijana', age: 18 }
+    //   ],
+    //   otherState: 'some other value',
+    //   showPerson: false
+    // };
   }
 
   componentWillMount() {
@@ -41,15 +41,15 @@ class App extends Component {
     console.log('[UPDATE App.js] Inside componentDidUpdate');
   }
 
-  // state = {
-  //   persons: [
-  //     { id: '00', name: 'Max', age: 28 },
-  //     { id: '01', name: 'Jane', age: 38 },
-  //     { id: '02', name: 'Tijana', age: 18 }
-  //   ],
-  //   otherState: 'some other value',
-  //   showPerson: false
-  // };
+  state = {
+    persons: [
+      { id: '00', name: 'Max', age: 28 },
+      { id: '01', name: 'Jane', age: 38 },
+      { id: '02', name: 'Tijana', age: 18 }
+    ],
+    otherState: 'some other value',
+    showPerson: false
+  };
 
   nameChangedHandler = (event, id) => {
     // Search person with that ID
