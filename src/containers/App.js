@@ -4,15 +4,52 @@ import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
-  state = {
-    persons: [
-      { id: '00', name: 'Max', age: 28 },
-      { id: '01', name: 'Jane', age: 38 },
-      { id: '02', name: 'Tijana', age: 18 }
-    ],
-    otherState: 'some other value',
-    showPerson: false
+
+  constructor(props) {
+    super(props);
+    console.log('[App.js] Inside Constructor', props);
+    this.state = {
+      persons: [
+        { id: '00', name: 'Max', age: 28 },
+        { id: '01', name: 'Jane', age: 38 },
+        { id: '02', name: 'Tijana', age: 18 }
+      ],
+      otherState: 'some other value',
+      showPerson: false
+    };
+  }
+
+  componentWillMount() {
+    console.log('[App.js] Inside componentWillMount()');
+  }
+
+  componentDidMount() {
+    console.log('[App.js] Inside componentDidMount()');
   };
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('[UPDATE App.js] Inside shouldComponentUpdate', nextProps, nextState);
+    return nextState.persons !== this.state.persons ||
+    nextState.showPerson !== this.state.showPerson;
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    console.log('[UPDATE App.js] Inside componentWillUpdate', nextProps, nextState);
+  }
+
+  componentDidUpdate() {
+    console.log('[UPDATE App.js] Inside componentDidUpdate');
+  }
+
+  // state = {
+  //   persons: [
+  //     { id: '00', name: 'Max', age: 28 },
+  //     { id: '01', name: 'Jane', age: 38 },
+  //     { id: '02', name: 'Tijana', age: 18 }
+  //   ],
+  //   otherState: 'some other value',
+  //   showPerson: false
+  // };
 
   nameChangedHandler = (event, id) => {
     // Search person with that ID
@@ -52,6 +89,8 @@ class App extends Component {
 
   render() {
 
+    console.log('[App.js] Inside Render');
+
     let persons = null;
 
     if (this.state.showPerson) {
@@ -63,6 +102,7 @@ class App extends Component {
 
     return (
       <div className={classes.App}>
+      <button onClick={() => {this.setState({showPerson: true})}}>Show Person</button>
         <Cockpit
           appTitle={this.props.title}
           showPerson={this.state.showPerson}
