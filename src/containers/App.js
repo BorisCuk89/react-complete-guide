@@ -3,6 +3,9 @@ import classes from './App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 
+import withClass from '../hoc/withClass';
+import Aux from '../hoc/Aux';
+
 class App extends Component {
 
   constructor(props) {
@@ -30,7 +33,7 @@ class App extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     console.log('[UPDATE App.js] Inside shouldComponentUpdate', nextProps, nextState);
     return nextState.persons !== this.state.persons ||
-    nextState.showPerson !== this.state.showPerson;
+      nextState.showPerson !== this.state.showPerson;
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -101,17 +104,17 @@ class App extends Component {
     }
 
     return (
-      <div className={classes.App}>
-      <button onClick={() => {this.setState({showPerson: true})}}>Show Person</button>
+      <Aux>
+        <button onClick={() => { this.setState({ showPerson: true }) }}>Show Person</button>
         <Cockpit
           appTitle={this.props.title}
           showPerson={this.state.showPerson}
           persons={this.state.persons}
           clicked={this.togglePersonsHandler} />
         {persons}
-      </div>
+      </Aux>
     );
   }
 }
 
-export default App;
+export default withClass(App, classes.App);
